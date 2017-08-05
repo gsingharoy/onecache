@@ -21,7 +21,8 @@ func New() *Cache {
 // @params
 // key:         [string] key of the record
 // v:           [interface{}] any record which should be the value of the cache
-// expiresIn:   [int64] time in seconds in which the cached value will be expired
+// expiresIn:   [int64] time in seconds in which the cached value will be expired. If the cache is supposed to
+//				be stored for an infinite time then keep this value -1
 func (c *Cache) Set(key string, v interface{}, expiresIn int64) {
 	c.recordMap[key] = record{
 		value:     v,

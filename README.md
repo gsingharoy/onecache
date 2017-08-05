@@ -30,3 +30,8 @@ if !found {
   // logic when cache is missed
 }
 ```
+
+In case you want the cache to never expire then pass expiresIn as `-1`
+```go
+c.Set("my-awesome-key", m, -1) 
+```
