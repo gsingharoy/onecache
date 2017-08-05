@@ -10,5 +10,6 @@ type record struct {
 }
 
 func (r *record) hasExpired() bool {
-	return time.Now().After(r.timestamp.Add(time.Second * time.Duration(r.expiresIn)))
+	return r.expiresIn > -1 &&
+		time.Now().After(r.timestamp.Add(time.Second*time.Duration(r.expiresIn)))
 }
