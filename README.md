@@ -1,5 +1,8 @@
 # Onecache
-In memory cache golang.
+
+In memory cache implementation in golang.
+
+[![Build Status](https://travis-ci.org/gsingharoy/onecache.svg?branch=master)](https://travis-ci.org/gsingharoy/onecache)
 
 ## Description
 This package contains a simple in memory caching functionality. It supports simply a lookup with a cache key, which contains an expiration contract. the cache storage is periodically cleaned from old expired cached values.
