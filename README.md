@@ -12,8 +12,10 @@ This package contains a simple in memory caching functionality. It supports simp
 ## Usage
 
 ```go
+import "github.com/gsingharoy/onecache"
+
 // generate a new cache instance
-c := New()
+c := onecache.New()
 
 // Any struct
 m := &MyAwesomeStruct{
@@ -33,5 +35,5 @@ if !found {
 
 In case you want the cache to never expire then pass expiresIn as `-1`
 ```go
-c.Set("my-awesome-key", m, -1) 
+c.Set("my-awesome-key", m, -1)
 ```
