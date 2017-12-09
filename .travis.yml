@@ -1,6 +1,19 @@
 language: go
 go:
- - 1.8.3
+ - 1.8.x
+
+before_install:
+  - go get -u github.com/kardianos/govendor && govendor install
 
 script:
- - script/travis
+ - govendor test -coverprofile=profile.out -covermode=atomic
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+  recipients:
+  - neogauravsvnit@gmail.com
+  on_success: change
+  on_failure: always
