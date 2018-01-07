@@ -24,6 +24,9 @@ func New() *Cache {
 // expiresIn:   [int64] time in seconds in which the cached value will be expired. If the cache is supposed to
 //				be stored for an infinite time then keep this value -1
 func (c *Cache) Set(key string, v interface{}, expiresIn int64) {
+	// TODO: Introduce a layered key storage so that the same mutex is not used always.
+	cMutex.Lock()
+	defer cMutex.Unlock()
 	c.recordMap[key] = record{
 		value:     v,
 		timestamp: time.Now(),
