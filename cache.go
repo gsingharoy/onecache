@@ -47,22 +47,24 @@ func (c *Cache) Find(key string) (interface{}, bool) {
 	if !ok || r.hasExpired() {
 		return nil, false
 	}
-	// To optimize this, this go routine can be a channel which will accept all clean() requests
-	go c.clean()
+	if randGen.Intn(100) <= 9 {
+		// cleanup only with a probablility of 0.1
+		go c.clean()
+	}
 	return r.value, true
 }
 
 // deletes expired records
 func (c *Cache) clean() {
-  foundExpired := false
+	foundExpired := false
 	for k, v := range c.recordMap {
 		if v.hasExpired() {
-      if !foundExpired{
-        // Lock only if an entry for expiration has been found
-        foundExpired = true
-        cMutex.Lock()
-        defer cMutex.Unlock()
-      }
+			if !foundExpired {
+				// Lock only if an entry for expiration has been found
+				foundExpired = true
+				cMutex.Lock()
+				defer cMutex.Unlock()
+			}
 			delete(c.recordMap, k)
 		}
 	}
