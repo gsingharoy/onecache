@@ -48,7 +48,7 @@ func TestCacheFind(t *testing.T) {
 	assert.Equal(t, "some-value", v)
 }
 
-func CacheClean(t *testing.T) {
+func Cache_clean(t *testing.T) {
 	c := New()
 	c.recordMap["key1"] = record{
 		expiresIn: 10,
