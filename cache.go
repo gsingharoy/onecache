@@ -48,12 +48,3 @@ func (c *Cache) Find(key string) (interface{}, bool) {
 	go c.clean()
 	return r.value, true
 }
-
-// deletes expired records
-func (c *Cache) clean() {
-	for k, v := range c.recordMap {
-		if v.hasExpired() {
-			delete(c.recordMap, k)
-		}
-	}
-}
