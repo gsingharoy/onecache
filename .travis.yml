@@ -1,6 +1,9 @@
 language: go
 go:
  - 1.8.x
+ - 1.9.x
+ - 1.10.x
+ - tip
 
 before_install:
   - go get -u github.com/kardianos/govendor && govendor install
@@ -13,7 +16,7 @@ after_success:
 
 notifications:
   email:
-  recipients:
-  - neogauravsvnit@gmail.com
-  on_success: change
-  on_failure: always
+    recipients:
+      - neogauravsvnit@gmail.com
+    on_success: change
+    on_failure: always
